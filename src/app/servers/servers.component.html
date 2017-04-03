@@ -16,12 +16,26 @@
     [disabled] = "!allowNewServer"
     (click)="onCreateServer()">Add Server</button>
 
-<p>{{serverCreationStatus}}</p>
+<!--<p>{{serverCreationStatus}}</p>-->
 
-<app-server></app-server>
-<app-server></app-server>
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+
+<app-server *ngFor="let server of servers"></app-server>
 
 <hr>
+
+<button
+    class= "btn btn-primary"
+    (click)="onToggleDisplayParagraph()">Display details</button>
+
+<p *ngIf="toggleButtonState">Secret password = tuna</p>
+
+<div 
+    *ngFor="let buttonClick of buttonClicksLog; let index = index" 
+    [ngStyle]= "{backgroundColor: index >= 4 ? 'blue' : 'red'}" 
+    [ngClass]= "{'white-text': index >= 4}">{{ buttonClick }}</div>
+
+<!--<hr>
 
 <input 
     type="text"
@@ -33,4 +47,4 @@
     [disabled] = "userName == ''"
     (click) = "userName = ''"> Clear user name</button>
 
-<p>{{userName}}</p>
+<p>{{userName}}</p>-->
